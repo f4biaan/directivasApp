@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   ]
 })
 export class AgregarComponent {
+
+  miFormulario: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required]],
+  });
+
+  constructor(private fb: FormBuilder) { }
+
+  tieneError(campo: string) {
+    return this.miFormulario.get(campo)?.invalid || false;
+  }
 
 }
